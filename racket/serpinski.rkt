@@ -3,7 +3,7 @@
 (require racket/draw)
 
 (define WIDTH 4500)
-(define HEIGHT 4000)
+(define HEIGHT 3900)
 
 ;A list of the points of the initial equilateral triangle
 ;The first point is the bottom-left
@@ -40,7 +40,7 @@
          ;Height of sub-triangle
          ;WTF I did some fucking math wrong? Or something. I'm off by like 50
          ;somehow
-         [sub-height (+ 50 (ceiling(* (sin (degrees->radians 60)) sub-length)))]
+         [sub-height (ceiling(* (sin (degrees->radians 60)) sub-length))]
          ;It definitely has something to do with sub-height. Because A and B are
          ;the only things messing up.
          [A (make-object point% (+ (send (first triangle) get-x)
@@ -74,6 +74,6 @@
          [y1 (send a get-y)])
     (sqrt (+ (expt (- x2 x1) 2) (expt (- y2 y1) 2)))))
 
-(create-subtriangle initial-triangle 4)
+(create-subtriangle initial-triangle 5)
 
 (send target save-file "serpinski.png" 'png)
